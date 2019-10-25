@@ -1,17 +1,14 @@
-function log(msg) {
-  console.log('msg : ', msg);
-}
+let a: number = 10;
+let b: boolean;
+let c: string;
+let d: any;
+let e: number[] = [1,2,3,4,5];
+let f: number[] = ['a',1,23,4,true]
+let g: any[] = ['a',1,2,3,4, undefined, false];
 
-const message = 'Hello world';
+const ColorRed = 1;
+const ColorBlue = 2;
+const ColorGreen = 3;
 
-log(message);
-
-function doSomething() {
-  for(let i = 0; i < 5; i++) {
-      console.log(i);
-  }
-
-  console.log('finally : ', i);
-}
-
-doSomething();
+enum Color { Red, Blue, Green};
+let backgroundColor: number = Color.Red;
