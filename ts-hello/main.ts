@@ -21,7 +21,7 @@ class Test {
   y: number;
   z: string;
 
-  constructor(x: number, y: number, z: string) {
+  constructor(x?: number, y?: number, z?: string) {
     this.x = x;
     this.y = y;
     this.z = z;
@@ -36,5 +36,5 @@ class Test {
   }
 }
 
-let test = new Test(1, 5, '준우');
+let test = new Test();
 test.draw();
