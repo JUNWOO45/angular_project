@@ -21,5 +21,6 @@ var Test = /** @class */ (function () {
     };
     return Test;
 }());
-var test = new Test();
+var test = new Test(2, 4, '준우');
+test.x = 1000;
 test.draw();

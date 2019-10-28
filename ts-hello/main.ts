@@ -17,9 +17,9 @@ const data: Point = {
 testPoint(data);
 
 class Test {
-  x: number;
-  y: number;
-  z: string;
+  private x: number;
+  private y: number;
+  private z: string;
 
   constructor(x?: number, y?: number, z?: string) {
     this.x = x;
@@ -27,14 +27,15 @@ class Test {
     this.z = z;
   }
 
-  draw() {
+  private draw() {
     console.log(`X is ${this.x} and Y is ${this.y} AND MY NAME IS ${this.z}`);
   }
 
-  getDistance() {
+  public getDistance() {
     //  ...
   }
 }
 
-let test = new Test();
+let test = new Test(2, 4, '준우');
+test.x = 1000;
 test.draw();
