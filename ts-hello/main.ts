@@ -15,3 +15,21 @@ const data: Point = {
 };
 
 testPoint(data);
+
+class Test {
+  x: number;
+  y: number;
+
+  draw() {
+    console.log(`X is ${this.x} and Y is ${this.y}`);
+  }
+
+  getDistance() {
+    //  ...
+  }
+}
+
+let test = new Test();
+test.x = 10;
+test.y = 100;
+test.draw();
