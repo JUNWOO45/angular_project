@@ -1,14 +1,17 @@
-let a: number = 10;
-let b: boolean;
-let c: string;
-let d: any;
-let e: number[] = [1,2,3,4,5];
-let f: number[] = ['a',1,23,4,true]
-let g: any[] = ['a',1,2,3,4, undefined, false];
+interface Point {
+  x: number,
+  y: number,
+  z: string
+}
 
-const ColorRed = 1;
-const ColorBlue = 2;
-const ColorGreen = 3;
+const testPoint = (point: Point) => {
+  return `${point.x} + ${point.y} point.z 안녕`;
+}
 
-enum Color { Red, Blue, Green};
-let backgroundColor: number = Color.Red;
+const data: Point = {
+  x: 10,
+  y: 5,
+  z: '준우'
+};
+
+testPoint(data);
