@@ -8,17 +8,18 @@ var data = {
 };
 testPoint(data);
 var Test = /** @class */ (function () {
-    function Test() {
+    function Test(x, y, z) {
+        this.x = x;
+        this.y = y;
+        this.z = z;
     }
     Test.prototype.draw = function () {
-        console.log("X is " + this.x + " and Y is " + this.y);
+        console.log("X is " + this.x + " and Y is " + this.y + " AND MY NAME IS " + this.z);
     };
     Test.prototype.getDistance = function () {
         //  ...
     };
     return Test;
 }());
-var test = new Test();
-test.x = 10;
-test.y = 100;
+var test = new Test(1, 5, '준우');
 test.draw();

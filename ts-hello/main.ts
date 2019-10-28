@@ -19,9 +19,16 @@ testPoint(data);
 class Test {
   x: number;
   y: number;
+  z: string;
+
+  constructor(x: number, y: number, z: string) {
+    this.x = x;
+    this.y = y;
+    this.z = z;
+  }
 
   draw() {
-    console.log(`X is ${this.x} and Y is ${this.y}`);
+    console.log(`X is ${this.x} and Y is ${this.y} AND MY NAME IS ${this.z}`);
   }
 
   getDistance() {
@@ -29,7 +36,5 @@ class Test {
   }
 }
 
-let test = new Test();
-test.x = 10;
-test.y = 100;
+let test = new Test(1, 5, '준우');
 test.draw();
