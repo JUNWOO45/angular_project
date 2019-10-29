@@ -17,17 +17,10 @@ const data: Point = {
 testPoint(data);
 
 class Test {
-  private x: number;
-  private y: number;
-  private z: string;
-
-  constructor(x?: number, y?: number, z?: string) {
-    this.x = x;
-    this.y = y;
-    this.z = z;
+  constructor(private x?: number, private y?: number, private z?: string) {
   }
 
-  private draw() {
+  public draw() {
     console.log(`X is ${this.x} and Y is ${this.y} AND MY NAME IS ${this.z}`);
   }
 
@@ -37,5 +30,4 @@ class Test {
 }
 
 let test = new Test(2, 4, '준우');
-test.x = 1000;
 test.draw();
