@@ -1,24 +1,8 @@
-class Display {
-  likeNum = 15;
-  clickFlag = false;
-  btn = document.querySelector('#btn');
-  display = document.querySelector('#display');
+import { LikeComponent } from './like.component';
 
-  constructor() {
-    this.display.innerText = this.likeNum;
-  }
+let component = new LikeComponent(10, true);
 
-  public clickLikeBtn() {
-    this.clickFlag ? this.likeNum -= 1 : this.likeNum += 1;
-    this.clickFlag = !this.clickFlag;
-    this.display.innerText = this.likeNum;
-  }
-}
-
-
-let facebook = new Display();
-
-const btn = document.querySelector('#btn');
-btn.addEventListener('click', () => {
-  facebook.clickLikeBtn();
-});
+component.onClick();
+console.log(`likesCount: ${component.likeCount}`);
+component.onClick();
+console.log(`likesCount: ${component.likeCount}`);
