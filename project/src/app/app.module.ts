@@ -8,6 +8,7 @@ import { CoursesComponent } from './courses.component';
 import { CoursesService } from './courses.service';
 import { AuthorComponent } from './author/author.component';
 import { AuthorService } from './author.service';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { AuthorService } from './author.service';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule
   ],
   providers: [
     CoursesService,
