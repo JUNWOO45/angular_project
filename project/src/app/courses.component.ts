@@ -11,7 +11,8 @@ import { CoursesService } from './courses.service';
     </li>
   </ul>
 
-  <button class="btn btn-primary">BTN</button>
+  <input type="text" (keyUp.enter)="onKeyUp(email.value)" #email>
+  <button class="btn btn-primary" (click)="onClick(email.value)">BTN</button>
   `
 })
 export class CoursesComponent {
@@ -20,5 +21,13 @@ export class CoursesComponent {
 
   constructor(service: CoursesService) {
     this.courses = service.getCourses();
+  }
+
+  onKeyUp(value) {
+    console.log('value : ', value);
+  }
+
+  onClick(value) {
+    console.log('value : ', value);
   }
 }
