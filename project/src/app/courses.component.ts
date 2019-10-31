@@ -24,7 +24,6 @@ import { CoursesService } from './courses.service';
     {{ course.date | date:'yy:MM:dd'}} <br>
   </div>
   <br><br><br>
-  
   `
 })
 export class CoursesComponent {
@@ -37,7 +36,7 @@ export class CoursesComponent {
     students: 2039123,
     price: 7.28938,
     date: new Date(2019, 10, 30)
-  }
+  };
 
   constructor(service: CoursesService) {
     this.courses = service.getCourses();

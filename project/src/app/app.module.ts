@@ -9,18 +9,22 @@ import { CoursesService } from './courses.service';
 import { AuthorComponent } from './author/author.component';
 import { AuthorService } from './author.service';
 import { FormsModule } from '@angular/forms';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { FavoriteComponent } from './favorite/favorite.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     CourseComponent,
     CoursesComponent,
-    AuthorComponent
+    AuthorComponent,
+    FavoriteComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    FontAwesomeModule
   ],
   providers: [
     CoursesService,
