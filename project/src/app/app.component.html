@@ -1,4 +1,4 @@
-<app-favorite 
+<!-- <app-favorite 
   [is-favorite]="post.isFavoriteCheck"
   (change)="onChanged($event)"
 ></app-favorite>
@@ -18,7 +18,7 @@
   <div *ngSwitchCase="'map'">this is map</div>
   <div *ngSwitchCase="'list'">this is list</div>
   <div *ngSwitchDefault>nonono....</div>
-</div>
+</div> -->
 
 <!-- <div *ngIf="courses.length > 0; then Courses else noCourse"></div>
 <ng-template #Courses>
@@ -31,3 +31,12 @@
 <ng-template #noCourse>
   THERE is NO COURSE
 </ng-template> -->
+
+<button (click)="requestList()">btn</button>
+<div>
+  <ul *ngFor="let item of list; trackBy: trackItem">
+    <li>
+      {{item.name}}
+    </li>
+  </ul>
+</div>

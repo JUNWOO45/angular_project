@@ -11,6 +11,20 @@ export class AppComponent {
   title = 'project';
   courses = [1,2,3,4];
   viewModel='map'
+  list = [
+    {
+      id: 0,
+      name: 'junwoo'
+    },
+    {
+      id: 1,
+      name: 'gaon'
+    },
+    {
+      id: 2,
+      name: 'yeoul'
+    }
+  ];
 
   post = {
     title: 'hahaha',
@@ -24,5 +38,30 @@ export class AppComponent {
 
   changeViewMode($event) {
     this.viewModel = $event;
+  }
+
+  requestList() {
+    this.list = [
+      {
+        id: 0,
+        name: 'junwoo'
+      },
+      {
+        id: 1,
+        name: 'gaon'
+      },
+      {
+        id: 2,
+        name: 'yeoul'
+      },
+      {
+        id: 3,
+        name: 'hello'
+      }
+    ]
+  }
+
+  trackItem(index, item) {
+    return item ? item.id : undefined;
   }
 }
