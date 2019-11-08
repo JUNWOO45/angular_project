@@ -3,15 +3,31 @@
   (change)="onChanged($event)"
 ></app-favorite>
 
-<div *ngIf="courses.length > 0 else noCourse">
-  <ul *ngFor="let course of courses">
-    <li>{{ course }}</li>
-  </ul>
+<div [hidden]="courses">
+  hi
 </div>
-<!-- <div *ngIf="courses.length === 0">
+<div>
   THERE is NO COURSE
-</div> -->
+</div>
 
+<ul class="nav nav-pills">
+  <li><a (click)="changeViewMode('map')">map</a></li>
+  <li><a (click)="changeViewMode('list')">list</a></li>
+</ul>
+<div [ngSwitch]="viewModel">
+  <div *ngSwitchCase="'map'">this is map</div>
+  <div *ngSwitchCase="'list'">this is list</div>
+  <div *ngSwitchDefault>nonono....</div>
+</div>
+
+<!-- <div *ngIf="courses.length > 0; then Courses else noCourse"></div>
+<ng-template #Courses>
+  <ul *ngFor="let course of courses">
+    <li>
+      {{ course }}
+    </li>
+  </ul>
+</ng-template>
 <ng-template #noCourse>
   THERE is NO COURSE
-</ng-template>
+</ng-template> -->

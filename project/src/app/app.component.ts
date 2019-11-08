@@ -9,7 +9,8 @@ import { onChangedNewValue } from './favorite/favorite.component';
 })
 export class AppComponent {
   title = 'project';
-  courses = [1,2,3,4,5];
+  courses = [1,2,3,4];
+  viewModel='map'
 
   post = {
     title: 'hahaha',
@@ -19,5 +20,9 @@ export class AppComponent {
   onChanged(eventArgs: onChangedNewValue) {
     console.log('clicked!!!');
     console.log('eventArgs.newValue : ', eventArgs.newValue);
+  }
+
+  changeViewMode($event) {
+    this.viewModel = $event;
   }
 }
