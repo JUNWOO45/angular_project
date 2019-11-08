@@ -1,7 +1,17 @@
-<!-- <h1>Angular</h1>
-<courses></courses>
-<app-author></app-author> -->
 <app-favorite 
   [is-favorite]="post.isFavoriteCheck"
   (change)="onChanged($event)"
 ></app-favorite>
+
+<div *ngIf="courses.length > 0 else noCourse">
+  <ul *ngFor="let course of courses">
+    <li>{{ course }}</li>
+  </ul>
+</div>
+<!-- <div *ngIf="courses.length === 0">
+  THERE is NO COURSE
+</div> -->
+
+<ng-template #noCourse>
+  THERE is NO COURSE
+</ng-template>

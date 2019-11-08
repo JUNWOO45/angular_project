@@ -9,6 +9,7 @@ import { onChangedNewValue } from './favorite/favorite.component';
 })
 export class AppComponent {
   title = 'project';
+  courses = [1,2,3,4,5];
 
   post = {
     title: 'hahaha',
