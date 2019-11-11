@@ -11,6 +11,7 @@ import { AuthorService } from './author.service';
 import { FormsModule } from '@angular/forms';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { FavoriteComponent } from './favorite/favorite.component';
+import { ContactFormComponent } from './contact-form/contact-form.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { FavoriteComponent } from './favorite/favorite.component';
     CourseComponent,
     CoursesComponent,
     AuthorComponent,
-    FavoriteComponent
+    FavoriteComponent,
+    ContactFormComponent
   ],
   imports: [
     BrowserModule,
