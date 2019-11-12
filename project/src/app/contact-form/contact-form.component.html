@@ -11,7 +11,12 @@
       #firstName="ngModel"
       (change)="log(firstName)"
     >
-    <div class="alert alert-danger" *ngIf="firstName.invalid && firstName.touched">First Name을 적어주세요!</div>
+    <div 
+      class="alert alert-danger" 
+      *ngIf="firstName.invalid && firstName.touched"
+    >
+      First Name을 적어주세요!
+    </div>
   </div>
   <div class="form-group">
     <label for="comment">Comment</label>
