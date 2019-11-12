@@ -9,3 +9,8 @@ body {
 .form-control.ng-touched.ng-invalid {
   border: 2px solid red;
 }
+
+.btn-disabled{
+  border: 1px solid gray;
+  background-color: gray;
+}
