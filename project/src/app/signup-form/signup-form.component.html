@@ -1,6 +1,6 @@
 <form [formGroup]="formTutorial">
     <div class="form-group">
-        <label for="username">이메일</label>
+        <label for="username">이름</label>
         <input 
             formControlName="username"
             id="username" 
@@ -12,12 +12,17 @@
             필수로 작성해야하는 항목입니다.
         </div>
         <div *ngIf="username.errors.minlength">
-            이메일은 최소 {{ username.errors.minlength.requiredLength }} 글자 이상이어야 합니다.
+            이름은 최소 {{ username.errors.minlength.requiredLength }} 글자 이상이어야 합니다.
         </div>
         <div *ngIf="username.errors.cannotContainSpace">
             빈 칸을 입력하면 안됩니다.
         </div>
+        <div *ngIf="username.errors.shouldBeUnique">
+            이미 존재하는 이름입니다.
+        </div>
     </div>
+
+    {{ username.errors | json }}
     <div class="form-group">
         <label for="password">비밀번호</label>
         <input 
