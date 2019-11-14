@@ -10,7 +10,11 @@ export class SignupFormComponent {
   formTutorial = new FormGroup({
     username: new FormControl(
       '',
-      Validators.required
+      [
+        Validators.required,
+        Validators.email,
+        Validators.minLength(3),
+      ]
     ),
     password: new FormControl(
       '',
