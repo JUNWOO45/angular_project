@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormArray, FormControl } from '@angular/forms';
+import { FormGroup, FormArray, FormControl, FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-new-course-form',
@@ -7,19 +7,33 @@ import { FormGroup, FormArray, FormControl } from '@angular/forms';
   styleUrls: ['./new-course-form.component.css']
 })
 export class NewCourseFormComponent implements OnInit {
-
-  form = new FormGroup({
-    topics: new FormArray([])
-  });
-
+  // form = new FormGroup({
+  //   name: new FormControl(),
+  //   contact: new FormGroup({
+  //     email: new FormControl(),
+  //     mobile: new FormControl()
+  //   }),
+  //   topics: new FormArray([])
+  // });
+  
+  form;
+  
+  constructor(fb: FormBuilder) {
+    this.form = fb.group({
+      name: ['', Validators.required],
+      contact: fb.group({
+        email: [],
+        mobile: []
+      }),
+      topics: fb.array([])
+    })
+  }
   addToTopics(topic: HTMLInputElement) {
     this.topics.push(new FormControl(topic.value));
     topic.value = '';
   }
 
   removeItem(topic) {
-    // console.log('topic.parent.value : ', topic.parent.value);
-    // console.log('this.topics.controls : ', this.topics.controls)
     const index = this.topics.controls.indexOf(topic);
 
     this.topics.removeAt(index);
