@@ -21,60 +21,71 @@ export class PostsComponent implements OnInit, OnChanges, AfterViewChecked, Afte
   }
 
   ngOnInit() {
-    console.log('ngOnInit WORKDED');
+    // console.log('ngOnInit WORKDED');
     this.service.getItems()
     .subscribe((res: Test) => {
       console.log('res : ', res);
       this.posts = res;
+    }, error => {
+      alert('An unexpected error occurred.');
+      console.log('error : ', error);
     })
   }
 
   ngOnChanges() {
-    console.log('CHANGED!')
+    // console.log('CHANGED!')
   }
 
   ngAfterViewInit() {
-    console.log('VIEW INIT')
+    // console.log('VIEW INIT')
   }
 
   ngAfterViewChecked() {
-    console.log('AFTER VIEW CHECKED')
+    // console.log('AFTER VIEW CHECKED')
   }
 
   createPost(input: HTMLInputElement) {
     let post = {
       title: input.value
     };
-
+    
+    this.posts.splice(0, 0, post);
     input.value = '';
 
     this.service.postItem(post)
       .subscribe(res => {
         post['id'] = res['id'];
-        this.posts.splice(0, 0, post);
-        console.log(this.posts)
+      }, error => {
+        this.posts.splice(0, 1);
       })
   }
 
   updatePost(post) {
+    this.posts.forEach(el => {
+      if(el.id === post.id) {
+        el['isRead'] = true;
+      }
+    });
+
     this.service.putItem(post)
       .subscribe(res => {
         this.posts.forEach(el => {
           if(el.id === post.id) {
-            el['isRead'] = true;
+            el['isRead'] = false;
           }
         });
 
-        console.log(this.posts)
+        console.log(this.posts);
       })
   }
 
   deletePost(post) {
-    this.service.deleteItem(post)
-      .subscribe(res => {
-        const index = this.posts.indexOf(post);
+    const index = this.posts.indexOf(post);
+    this.posts.splice(index, 1);
 
-        this.posts.splice(index, 1);
-      })
+    this.service.deleteItem(post)
+      .subscribe(null, error => {
+        this.posts.splice(index, 0, post);
+      });
   }
 }
