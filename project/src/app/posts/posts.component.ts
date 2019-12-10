@@ -38,4 +38,19 @@ export class PostsComponent{
         console.log(this.posts)
       })
   }
+
+  updatePost(post) {
+    this.http.patch(`${this.url}/${post.id}`, {
+      response: 'YES PATCH IS SUCCEDED!'
+    })
+      .subscribe(res => {
+        this.posts.forEach(el => {
+          if(el.id === post.id) {
+            el['isRead'] = true;
+          }
+        });
+
+        console.log(this.posts)
+      })
+  }
 }
