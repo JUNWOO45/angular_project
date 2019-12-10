@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { Component, OnInit, OnChanges, AfterViewChecked } from '@angular/core';
+import { PostService } from '../services/post.service';
 
 interface Test {
   userId: number;
@@ -12,16 +12,33 @@ interface Test {
   templateUrl: './posts.component.html',
   styleUrls: ['./posts.component.css']
 })
-export class PostsComponent{
+export class PostsComponent implements OnInit, OnChanges, AfterViewChecked, AfterViewInit {
   posts: any[];
-  private url = 'http://jsonplaceholder.typicode.com/posts';
+  
 
-  constructor(private http: HttpClient) { 
-    http.get(this.url)
-      .subscribe((res: Test) => {
-        console.log('res : ', res);
-        this.posts = res;
-      })
+  constructor(private service: PostService) { 
+    console.log('constructor WORKDED');
+  }
+
+  ngOnInit() {
+    console.log('ngOnInit WORKDED');
+    this.service.getItems()
+    .subscribe((res: Test) => {
+      console.log('res : ', res);
+      this.posts = res;
+    })
+  }
+
+  ngOnChanges() {
+    console.log('CHANGED!')
+  }
+
+  ngAfterViewInit() {
+    console.log('VIEW INIT')
+  }
+
+  ngAfterViewChecked() {
+    console.log('AFTER VIEW CHECKED')
   }
 
   createPost(input: HTMLInputElement) {
@@ -31,7 +48,7 @@ export class PostsComponent{
 
     input.value = '';
 
-    this.http.post(this.url, JSON.stringify(post))
+    this.service.postItem(post)
       .subscribe(res => {
         post['id'] = res['id'];
         this.posts.splice(0, 0, post);
@@ -40,9 +57,7 @@ export class PostsComponent{
   }
 
   updatePost(post) {
-    this.http.patch(`${this.url}/${post.id}`, {
-      response: 'YES PATCH IS SUCCEDED!'
-    })
+    this.service.putItem(post)
       .subscribe(res => {
         this.posts.forEach(el => {
           if(el.id === post.id) {
@@ -55,7 +70,7 @@ export class PostsComponent{
   }
 
   deletePost(post) {
-    this.http.delete(`${this.url}/${post.id}`)
+    this.service.deleteItem(post)
       .subscribe(res => {
         const index = this.posts.indexOf(post);
 
