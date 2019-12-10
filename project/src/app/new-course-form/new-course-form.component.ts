@@ -6,7 +6,7 @@ import { FormGroup, FormArray, FormControl, FormBuilder, Validators } from '@ang
   templateUrl: './new-course-form.component.html',
   styleUrls: ['./new-course-form.component.css']
 })
-export class NewCourseFormComponent implements OnInit {
+export class NewCourseFormComponent {
   // form = new FormGroup({
   //   name: new FormControl(),
   //   contact: new FormGroup({

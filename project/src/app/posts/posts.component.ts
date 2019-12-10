@@ -1,23 +1,41 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
+interface Test {
+  userId: number;
+  id: number;
+  title: string;
+  body: string;
+}
 @Component({
   selector: 'app-posts',
   templateUrl: './posts.component.html',
   styleUrls: ['./posts.component.css']
 })
-export class PostsComponent implements OnInit {
+export class PostsComponent{
   posts: any[];
+  private url = 'http://jsonplaceholder.typicode.com/posts';
 
-  constructor(http: HttpClient) { 
-    http.get('http://jsonplaceholder.typicode.com/posts')
-      .subscribe(res => {
+  constructor(private http: HttpClient) { 
+    http.get(this.url)
+      .subscribe((res: Test) => {
         console.log('res : ', res);
         this.posts = res;
       })
   }
 
-  ngOnInit() {
-  }
+  createPost(input: HTMLInputElement) {
+    let post = {
+      title: input.value
+    };
 
+    input.value = '';
+
+    this.http.post(this.url, JSON.stringify(post))
+      .subscribe(res => {
+        post['id'] = res['id'];
+        this.posts.splice(0, 0, post);
+        console.log(this.posts)
+      })
+  }
 }
