@@ -12,7 +12,7 @@ interface Test {
   templateUrl: './posts.component.html',
   styleUrls: ['./posts.component.css']
 })
-export class PostsComponent implements OnInit, OnChanges, AfterViewChecked, AfterViewInit {
+export class PostsComponent implements OnInit, OnChanges, AfterViewChecked {
   posts: any[];
   
 
@@ -32,18 +32,6 @@ export class PostsComponent implements OnInit, OnChanges, AfterViewChecked, Afte
     })
   }
 
-  ngOnChanges() {
-    // console.log('CHANGED!')
-  }
-
-  ngAfterViewInit() {
-    // console.log('VIEW INIT')
-  }
-
-  ngAfterViewChecked() {
-    // console.log('AFTER VIEW CHECKED')
-  }
-
   createPost(input: HTMLInputElement) {
     let post = {
       title: input.value
@@ -53,11 +41,16 @@ export class PostsComponent implements OnInit, OnChanges, AfterViewChecked, Afte
     input.value = '';
 
     this.service.postItem(post)
-      .subscribe(res => {
-        post['id'] = res['id'];
-      }, error => {
-        this.posts.splice(0, 1);
-      })
+      .subscribe(
+        res => {
+          post['id'] = res['id'];
+        }, 
+        (error: Response) => {
+          if(error.status === 400) {
+            alert('400 ERRORS.....');
+          }
+          this.posts.splice(0, 1);
+        });
   }
 
   updatePost(post) {
@@ -68,15 +61,19 @@ export class PostsComponent implements OnInit, OnChanges, AfterViewChecked, Afte
     });
 
     this.service.putItem(post)
-      .subscribe(res => {
-        this.posts.forEach(el => {
-          if(el.id === post.id) {
-            el['isRead'] = false;
-          }
-        });
+      .subscribe(
+        res => {
+          this.posts.forEach(el => {
+            if(el.id === post.id) {
+              el['isRead'] = false;
+            }
+          });
 
-        console.log(this.posts);
-      })
+          console.log(this.posts);
+        }, 
+        error => {
+          alert('An unexpected error occurred.');
+        })
   }
 
   deletePost(post) {
@@ -84,8 +81,14 @@ export class PostsComponent implements OnInit, OnChanges, AfterViewChecked, Afte
     this.posts.splice(index, 1);
 
     this.service.deleteItem(post)
-      .subscribe(null, error => {
-        this.posts.splice(index, 0, post);
-      });
+      .subscribe(
+        null, 
+        (error: Response) => {
+          if(error.status === 404) {
+            alert('404 ERRORS!');
+          }
+          this.posts.splice(index, 0, post);
+          
+        });
   }
 }
